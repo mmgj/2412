@@ -1,0 +1,47 @@
+@import 'variables';
+
+html {
+  font-size: 20px;
+  background: $mainBG;
+  color: $maincolor;
+  min-height: 100%;
+}
+
+.app-outer-wrap {
+  max-width: 600px;
+  margin: 0 auto;
+
+  .good-times {
+    font-family: $basicFont;
+    text-align: center;
+    width: 100%;
+    margin: 0 auto;
+    margin-top: 2rem;
+    display: flex;
+    flex-direction: column;
+    .clock {
+      display: block;
+      width: 80%;
+      max-width: 20rem;
+      margin: 0 auto;
+    }
+    .textboxes {
+      display: block;
+      margin-top: .3rem;
+      .digits {
+        font-family: $numeralFont;
+        font-size: 6rem;
+      }
+      .words {
+        font-family: $wordFont;
+        font-size: $wordFontSize;
+        .unbreakable {
+          display: inline-block;
+        }
+      }
+    }
+  }
+}
+
+@import 'analog-clock';
+@import 'mediaqueries';
