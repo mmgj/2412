@@ -1,6 +1,11 @@
 import React from 'react';
 import moment from 'moment';
 
+/**
+ * makeSpans();
+ * Creates spans around text to make it line-break
+ * at specified points, for to make more pretty.
+ */
 function makeSpans(first, second = null) {
   const spans = second != null
     ? (<div><span className="unbreakable">{first}</span> <span className="unbreakable">{second}</span></div>)
@@ -8,6 +13,13 @@ function makeSpans(first, second = null) {
   return spans;
 }
 
+/**
+ * makeNordTime();
+ * Big old string-voodoo function to spell out
+ * time like a true nord.
+ * @param {*} hrs
+ * @param {*} mins
+ */
 function makeNordTime(hrs, mins) {
   const hourStringsNB = {
     0: 'tolv',
@@ -122,7 +134,7 @@ class DigitsAndWords extends React.Component {
 
   render() {
     return (
-      <div className="wrappa">
+      <div className="textboxes">
         <div className="digits">{this.state.moTime && this.state.moTime}</div>
         <div className="words">{this.state.strTime && this.state.strTime}</div>
       </div>
