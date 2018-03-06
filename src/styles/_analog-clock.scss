@@ -24,14 +24,20 @@
 
 .clock-content {
   position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   top: 0;
   left: 0;
   bottom: 0;
   right: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
+  opacity: 1;
+  transition: opacity .4s;
+  @-moz-document url-prefix() {
+    &.waiting {
+      opacity: 0 !important;
+    }
+  }
   .background-numbers {
     position: absolute;
     width: 90%;

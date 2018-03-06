@@ -23,11 +23,13 @@ html {
     margin-top: 2rem;
     display: flex;
     flex-direction: column;
-    .clock {
-      display: block;
+    .clock-holder {
       width: 80%;
+      display: block;
       max-width: 20rem;
       margin: 0 auto;
+      opacity: 1;
+      transition: opacity .4s;
     }
     .textboxes {
 

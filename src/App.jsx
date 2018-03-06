@@ -21,7 +21,7 @@ class App extends React.Component {
       <div className={this.state.domReady ? 'app-outer-wrap' : 'app-outer-wrap waiting'}>
         <GitHubber />
         <div className="good-times">
-          <div className="clock">
+          <div className="clock-holder">
             <AnalogClock />
           </div>
           <DigitsAndWords />
