@@ -10,7 +10,11 @@ html {
 .app-outer-wrap {
   max-width: 600px;
   margin: 0 auto;
-
+  opacity: 1;
+  transition: opacity .4s;
+  &.waiting {
+    opacity: 0 !important;
+  }
   .good-times {
     font-family: $basicFont;
     text-align: center;
@@ -26,8 +30,10 @@ html {
       margin: 0 auto;
     }
     .textboxes {
+
       display: block;
       margin-top: .3rem;
+      min-height: 190px;
       .digits {
         font-family: $numeralFont;
         font-size: 6rem;

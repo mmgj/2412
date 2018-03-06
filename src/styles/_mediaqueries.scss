@@ -1,6 +1,5 @@
 /* ###################### Media Queries ###################### */
 
-
 /* ########## iPhone 5 ########## */
 
 @media
@@ -10,7 +9,6 @@
   .good-times {
     width: 100% !important;
     margin-top: 5px !important;
-    background: none !important;
     @include centerer;
   }
 }
@@ -41,6 +39,18 @@
   }
 }
 
+@media
+    only screen and (min-device-width: 320px)
+    and (max-device-width: 480px)
+    and (-webkit-device-pixel-ratio: 2)
+    and (device-aspect-ratio: 2/3) and (orientation: landscape) {
+      .good-times {
+        .textboxes {
+          margin-top: -20px !important;
+        }
+      }
+    }
+
 /* ########### Landscape ( general ) ############### */
 
 @media screen and (min-width: 320px) and (max-width: 767px) and (orientation: landscape) {
@@ -48,16 +58,14 @@
     width: 100%;
     flex-direction: row !important;
     justify-content: flex-start !important;
-
     .clock {
       margin: 0 !important;
       display: inline-block !important;
       width: 50% !important;
     }
     .textboxes {
-      width: 50%;
+      width: 45%;
       display: inline-block;
-      margin-top: -15px !important;
     }
   }
 }

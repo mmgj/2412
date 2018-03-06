@@ -9,7 +9,11 @@ html {
 
 .app-outer-wrap {
   max-width: 600px;
-  margin: 0 auto; }
+  margin: 0 auto;
+  opacity: 1;
+  transition: opacity .4s; }
+  .app-outer-wrap.waiting {
+    opacity: 0 !important; }
   .app-outer-wrap .good-times {
     font-family: "Times New Roman", Times, serif;
     text-align: center;
@@ -25,7 +29,8 @@ html {
       margin: 0 auto; }
     .app-outer-wrap .good-times .textboxes {
       display: block;
-      margin-top: .3rem; }
+      margin-top: .3rem;
+      min-height: 190px; }
       .app-outer-wrap .good-times .textboxes .digits {
         font-family: "Marvel";
         font-size: 6rem; }
@@ -108,7 +113,6 @@ html {
   .good-times {
     width: 100% !important;
     margin-top: 5px !important;
-    background: none !important;
     position: absolute;
     top: 50%;
     left: 50%;
@@ -124,6 +128,10 @@ html {
     .good-times .textboxes .words {
       font-size: 2rem !important; } }
 
+@media only screen and (min-device-width: 320px) and (max-device-width: 480px) and (-webkit-device-pixel-ratio: 2) and (device-aspect-ratio: 2 / 3) and (orientation: landscape) {
+  .good-times .textboxes {
+    margin-top: -20px !important; } }
+
 /* ########### Landscape ( general ) ############### */
 @media screen and (min-width: 320px) and (max-width: 767px) and (orientation: landscape) {
   .good-times {
@@ -135,6 +143,5 @@ html {
       display: inline-block !important;
       width: 50% !important; }
     .good-times .textboxes {
-      width: 50%;
-      display: inline-block;
-      margin-top: -15px !important; } }
+      width: 45%;
+      display: inline-block; } }

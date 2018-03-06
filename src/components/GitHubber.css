@@ -16,6 +16,7 @@
 }
 
 .github-corner svg {
+  transition: fill .4s ease;
   fill: #ddd;
 }
 .github-corner:hover svg {
@@ -37,7 +38,7 @@
   }
 }
 
-@media (max-width: 500px) {
+@media (max-width: 667px) {
   .github-corner {
     display: none;
   }

@@ -119,6 +119,7 @@ class DigitsAndWords extends React.Component {
   }
 
   componentDidMount() {
+    this.updateClocks();
     setInterval(this.updateClocks, 1000);
   }
 
