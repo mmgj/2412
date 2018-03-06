@@ -1,55 +1,7 @@
+// The SCSS structure really isn't complicated enough to
+// warrant this level of partials, but hey. Why not, right?
 @import 'variables';
-
-html {
-  font-size: 20px;
-  background: $mainBG;
-  color: $maincolor;
-  min-height: 100%;
-}
-
-.app-outer-wrap {
-  max-width: 600px;
-  margin: 0 auto;
-  opacity: 1;
-  transition: opacity .4s;
-  &.waiting {
-    opacity: 0 !important;
-  }
-  .good-times {
-    font-family: $basicFont;
-    text-align: center;
-    width: 100%;
-    margin: 0 auto;
-    margin-top: 2rem;
-    display: flex;
-    flex-direction: column;
-    .clock-holder {
-      width: 80%;
-      display: block;
-      max-width: 20rem;
-      margin: 0 auto;
-      opacity: 1;
-      transition: opacity .4s;
-    }
-    .textboxes {
-
-      display: block;
-      margin-top: .3rem;
-      min-height: 190px;
-      .digits {
-        font-family: $numeralFont;
-        font-size: 6rem;
-      }
-      .words {
-        font-family: $wordFont;
-        font-size: $wordFontSize;
-        .unbreakable {
-          display: inline-block;
-        }
-      }
-    }
-  }
-}
-
+@import 'app';
 @import 'analog-clock';
+@import 'textboxes';
 @import 'mediaqueries';

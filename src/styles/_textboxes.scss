@@ -1,0 +1,16 @@
+.textboxes {
+  display: block;
+  margin-top: .3rem;
+  min-height: 190px;
+  .digits {
+    font-family: $numeralFont;
+    font-size: 6rem;
+  }
+  .words {
+    font-family: $wordFont;
+    font-size: $wordFontSize;
+    .unbreakable {
+      display: inline-block;
+    }
+  }
+}

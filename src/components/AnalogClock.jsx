@@ -22,6 +22,11 @@ export default class AnalogClock extends React.Component {
   }
 
   tick() {
+    // This is some hacky bullshit here. Firefox doesn't grok the positioning of .dock-content (apparently a known bug)
+    // but by waiting until it's rendered (wrong) and then moving the element a pixel it somehow works.
+    // Because of this the clock face is given an additional .waiting class which is set to opacity 0
+    // for FF only with some equally hacky CSS. When everything is in place, the .waiting class is removed
+    // and the elements transitions in. I'm not proud of this, but it seems to work. Kind of.
     if (!this.setState.fireFixed) {
       this.fireHazard.style.top = '1px';
       this.setState({ fireFixed: true });

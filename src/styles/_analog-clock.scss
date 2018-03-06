@@ -1,4 +1,4 @@
-
+// scss-lint:disable all
 .clock-container {
   position: relative;
   width: 80%;
@@ -33,6 +33,8 @@
   right: 0;
   opacity: 1;
   transition: opacity .4s;
+  // Terrible, terrible firefox hack.
+  // See AnalogClock.jsx > tick() function.
   @-moz-document url-prefix() {
     &.waiting {
       opacity: 0 !important;
@@ -53,7 +55,7 @@
   .indicator {
     border-radius: 10px;
     transform-origin: bottom;
-    outline: 1px solid transparent; // Firefox fix on rotation
+    outline: 1px solid transparent;
     position: absolute;
     bottom: 50%;
 

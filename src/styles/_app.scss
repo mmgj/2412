@@ -1,0 +1,33 @@
+html {
+  font-size: 20px;
+  background: $mainBG;
+  color: $maincolor;
+  min-height: 100%;
+}
+
+.app-outer-wrap {
+  max-width: 600px;
+  margin: 0 auto;
+  opacity: 1;
+  transition: opacity .4s;
+  &.waiting {
+    //FIXME: Should probably be axed. See App.jsx
+    opacity: 0 !important;
+  }
+  .good-times {
+    text-align: center;
+    width: 100%;
+    margin: 0 auto;
+    margin-top: 2rem;
+    display: flex;
+    flex-direction: column;
+    .clock-holder {
+      width: 80%;
+      display: block;
+      max-width: 20rem;
+      margin: 0 auto;
+      opacity: 1;
+      transition: opacity .4s;
+    }
+  }
+}

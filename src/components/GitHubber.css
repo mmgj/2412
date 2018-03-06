@@ -1,3 +1,7 @@
+/* I'm not putting this with the other SCSS due
+ * to some vague intention of bundling the component
+ * up neatly for re-use.
+*/
 .github-corner .forkme-label {
   position: absolute;
   right: -10px;

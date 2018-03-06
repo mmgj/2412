@@ -15,7 +15,6 @@ html {
   .app-outer-wrap.waiting {
     opacity: 0 !important; }
   .app-outer-wrap .good-times {
-    font-family: "Times New Roman", Times, serif;
     text-align: center;
     width: 100%;
     margin: 0 auto;
@@ -29,18 +28,6 @@ html {
       margin: 0 auto;
       opacity: 1;
       transition: opacity .4s; }
-    .app-outer-wrap .good-times .textboxes {
-      display: block;
-      margin-top: .3rem;
-      min-height: 190px; }
-      .app-outer-wrap .good-times .textboxes .digits {
-        font-family: "Marvel";
-        font-size: 6rem; }
-      .app-outer-wrap .good-times .textboxes .words {
-        font-family: "Ropa Sans";
-        font-size: 2.2rem; }
-        .app-outer-wrap .good-times .textboxes .words .unbreakable {
-          display: inline-block; }
 
 .clock-container {
   position: relative;
@@ -114,6 +101,19 @@ html {
     height: 3%;
     background-color: lightgrey;
     z-index: 5; }
+
+.textboxes {
+  display: block;
+  margin-top: .3rem;
+  min-height: 190px; }
+  .textboxes .digits {
+    font-family: "Marvel";
+    font-size: 6rem; }
+  .textboxes .words {
+    font-family: "Ropa Sans";
+    font-size: 2.2rem; }
+    .textboxes .words .unbreakable {
+      display: inline-block; }
 
 /* ###################### Media Queries ###################### */
 /* ########## iPhone 5 ########## */

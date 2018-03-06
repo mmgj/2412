@@ -1,16 +1,10 @@
 @import url('https://fonts.googleapis.com/css?family=Marvel:700');
-// @import url('https://fonts.googleapis.com/css?family=Montserrat+Alternates:500'); // Best, but poor æøå
-@import url('https://fonts.googleapis.com/css?family=Ropa+Sans'); // Strong contender
-// @import url('https://fonts.googleapis.com/css?family=Numans'); // Also good
-// @import url('https://fonts.googleapis.com/css?family=Saira+Extra+Condensed:500'); // Also good
+@import url('https://fonts.googleapis.com/css?family=Ropa+Sans');
 
 // Variables
-$basicFont: 'Times New Roman', Times, serif;
 $numeralFont: 'Marvel';
-// $wordFont: 'Montserrat Alternates';
-// $wordFontSize: 1.8rem; // Montserrat
 $wordFont: 'Ropa Sans';
-$wordFontSize: 2.2rem; // Ropa
+$wordFontSize: 2.2rem;
 $wordFontSizeReallySmall: 2rem;
 $maincolor: #222;
 $mainBG: linear-gradient(to bottom, #ffffff 0%,#e5e5e5 100%);

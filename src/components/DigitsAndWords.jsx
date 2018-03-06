@@ -17,8 +17,6 @@ function makeSpans(first, second = null) {
  * makeNordTime();
  * Big old string-voodoo function to spell out
  * time like a true nord.
- * @param {*} hrs
- * @param {*} mins
  */
 function makeNordTime(hrs, mins) {
   const hourStringsNB = {
