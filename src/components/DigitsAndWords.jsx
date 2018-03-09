@@ -1,6 +1,5 @@
 import React from 'react';
-import moment from 'moment';
-
+import PropTypes from 'prop-types';
 /**
  * makeSpans();
  * Creates spans around text to make it line-break
@@ -14,11 +13,11 @@ function makeSpans(first, second = null) {
 }
 
 /**
- * makeNordTime();
+ * makeWords();
  * Big old string-voodoo function to spell out
  * time like a true nord.
  */
-function makeNordTime(hrs, mins) {
+function makeWords(hour, minute) {
   const hourStringsNB = {
     0: 'tolv',
     1: 'ett',
@@ -68,36 +67,36 @@ function makeNordTime(hrs, mins) {
     18: 'atten',
     19: 'nitten',
   };
-  const hour = (mins >= 20) ? (parseInt(hrs, 10) + 1) : parseInt(hrs, 10);
-  const minutes = parseInt(mins, 10);
+  const betterHour = (minute >= 20) ? (parseInt(hour, 10) + 1) : parseInt(hour, 10);
+  const betterMinute = parseInt(minute, 10);
   let jsx;
   switch (true) {
-    case (minutes === 0):
-      jsx = makeSpans(`akkurat ${hourStringsNB[hour]}`);
+    case (betterMinute === 0):
+      jsx = makeSpans(`akkurat ${hourStringsNB[betterHour]}`);
       break;
-    case (minutes > 0 && minutes < 15):
-      jsx = makeSpans(`${minuteStringsNB[minutes]} over ${hourStringsNB[hour]}`);
+    case (betterMinute > 0 && betterMinute < 15):
+      jsx = makeSpans(`${minuteStringsNB[betterMinute]} over ${hourStringsNB[betterHour]}`);
       break;
-    case (minutes === 15):
-      jsx = makeSpans(`kvart over ${hourStringsNB[hour]}`);
+    case (betterMinute === 15):
+      jsx = makeSpans(`kvart over ${hourStringsNB[betterHour]}`);
       break;
-    case (minutes > 15 && minutes < 20):
-      jsx = makeSpans(`${minuteStringsNB[minutes]} over ${hourStringsNB[hour]}`);
+    case (betterMinute > 15 && betterMinute < 20):
+      jsx = makeSpans(`${minuteStringsNB[betterMinute]} over ${hourStringsNB[betterHour]}`);
       break;
-    case (minutes >= 20 && minutes < 30):
-      jsx = makeSpans(`${minuteStringsNB[(30 - minutes)]} på`, `halv ${hourStringsNB[hour]}`);
+    case (betterMinute >= 20 && betterMinute < 30):
+      jsx = makeSpans(`${minuteStringsNB[(30 - betterMinute)]} på`, `halv ${hourStringsNB[betterHour]}`);
       break;
-    case (minutes === 30):
-      jsx = makeSpans(`halv ${hourStringsNB[hour]}`);
+    case (betterMinute === 30):
+      jsx = makeSpans(`halv ${hourStringsNB[betterHour]}`);
       break;
-    case (minutes > 30 && minutes < 45):
-      jsx = makeSpans(`${minuteStringsNB[(minutes - 30)]} over`, `halv ${hourStringsNB[hour]}`);
+    case (betterMinute > 30 && betterMinute < 45):
+      jsx = makeSpans(`${minuteStringsNB[(betterMinute - 30)]} over`, `halv ${hourStringsNB[betterHour]}`);
       break;
-    case (minutes === 45):
-      jsx = makeSpans(`kvart på ${hourStringsNB[hour]}`);
+    case (betterMinute === 45):
+      jsx = makeSpans(`kvart på ${hourStringsNB[betterHour]}`);
       break;
-    case (minutes > 45):
-      jsx = makeSpans(`${minuteStringsNB[(60 - minutes)]} på ${hourStringsNB[hour]}`);
+    case (betterMinute > 45):
+      jsx = makeSpans(`${minuteStringsNB[(60 - betterMinute)]} på ${hourStringsNB[betterHour]}`);
       break;
     default:
       jsx = makeSpans('...');
@@ -106,39 +105,45 @@ function makeNordTime(hrs, mins) {
   return jsx;
 }
 
+function makeDigits(hour, minute) {
+  const hourFormatted = hour < 10 ? `0${hour}` : hour;
+  const minutesFormatted = minute < 10 ? `0${minute}` : minute;
+  return `${hourFormatted}:${minutesFormatted}`;
+}
+
 class DigitsAndWords extends React.Component {
   constructor(props) {
     super(props);
+    const { hour, minute } = this.props;
     this.state = {
-      moTime: undefined,
-      strTime: undefined,
+      digits: makeDigits(hour, minute),
+      words: makeWords(hour, minute),
     };
-    this.updateClocks = this.updateClocks.bind(this);
   }
 
-  componentDidMount() {
-    this.updateClocks();
-    setInterval(this.updateClocks, 1000);
-  }
-
-  updateClocks() {
-    const mo = moment();
-    const str = makeNordTime(mo.format('hh'), mo.format('mm'));
+  componentWillReceiveProps(nextProps) {
+    const { hour, minute } = nextProps;
+    const digits = makeDigits(hour, minute);
+    const words = makeWords(hour, minute);
     this.setState({
-      moTime: mo.format('HH:mm'),
-      strTime: str,
+      digits,
+      words,
     });
-    document.title = this.state.moTime;
   }
 
   render() {
     return (
       <div className="textboxes">
-        <div className="digits">{this.state.moTime && this.state.moTime}</div>
-        <div className="words">{this.state.strTime && this.state.strTime}</div>
+        <div className="digits">{this.state.digits && this.state.digits}</div>
+        <div className="words">{this.state.words && this.state.words}</div>
       </div>
     );
   }
 }
+
+DigitsAndWords.propTypes = {
+  hour: PropTypes.number.isRequired,
+  minute: PropTypes.number.isRequired,
+};
 
 export default DigitsAndWords;

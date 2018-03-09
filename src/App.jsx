@@ -14,22 +14,48 @@ import GitHubber from './components/GitHubber';
 class App extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { domReady: false };
+    this.state = {
+      domReady: false,
+      hour: undefined,
+      minute: undefined,
+      second: undefined,
+    };
+    this.updateClocks = this.updateClocks.bind(this);
   }
+
   componentDidMount() {
     // FIXME: This is probably not necessary anymore. Try axing this in next review.
     window.addEventListener('load', () => this.setState({ domReady: true }));
+    this.updateClocks();
+    setInterval(this.updateClocks, 1000);
   }
+  updateClocks() {
+    const date = new Date();
+    const hour = date.getHours();
+    const minute = date.getMinutes();
+    const second = date.getSeconds();
+    this.setState({
+      hour,
+      minute,
+      second,
+    });
+  }
+
   render() {
+    const { hour, minute, second } = this.state;
     return (
       <div className={this.state.domReady ? 'app-outer-wrap' : 'app-outer-wrap waiting'}>
         <GitHubber />
-        <div className="good-times">
-          <div className="clock-holder">
-            <AnalogClock />
+        {this.state.hour && this.state.minute
+        ?
+          <div className="good-times">
+            <div className="clock-holder">
+              <AnalogClock hour={hour} minute={minute} second={second} />
+            </div>
+            <DigitsAndWords hour={hour} minute={minute} />
           </div>
-          <DigitsAndWords />
-        </div>
+        : ''
+        }
       </div>
     );
   }

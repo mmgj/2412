@@ -3,55 +3,46 @@
 */
 
 import React from 'react';
+import PropTypes from 'prop-types';
 
-export default class AnalogClock extends React.Component {
+class AnalogClock extends React.Component {
   constructor(props) {
     super(props);
+    const { hour, minute, second } = this.props;
     this.state = {
-      date: new Date(),
+      hour,
+      minute,
+      second,
       fireFixed: false,
     };
   }
 
-  componentDidMount() {
-    this.timerID = setInterval(() => this.tick(), 1000);
+  componentWillReceiveProps(nextProps) {
+    if (!this.setState.fireFixed) {
+      this.fireHazard.style.marginTop = '1px';
+      this.setState({ fireFixed: true });
+    }
+    const { hour, minute, second } = nextProps;
+    this.setState({
+      hour,
+      minute,
+      second,
+    });
   }
 
   componentWillUnmount() {
     clearInterval(this.timerID);
   }
 
-  tick() {
-    // This is some hacky bullshit here. Firefox doesn't grok the positioning of .dock-content (apparently a known bug)
-    // but by waiting until it's rendered (wrong) and then moving the element a pixel it somehow works.
-    // Because of this the clock face is given an additional .waiting class which is set to opacity 0
-    // for FF only with some equally hacky CSS. When everything is in place, the .waiting class is removed
-    // and the elements transitions in. I'm not proud of this, but it seems to work. Kind of.
-    if (!this.setState.fireFixed) {
-      this.fireHazard.style.top = '1px';
-      this.setState({ fireFixed: true });
-    }
-    this.setState({
-      date: new Date(),
-    });
-  }
-
   render() {
-    const hoursDegrees = (this.state.date.getHours() * 30) + (this.state.date.getMinutes() / 2);
-    const minutesDegrees = (this.state.date.getMinutes() * 6) + (this.state.date.getSeconds() / 10);
-    const secondsDegrees = this.state.date.getSeconds() * 6;
+    const hoursDegrees = (this.state.hour * 30) + (this.state.minute / 2);
+    const minutesDegrees = (this.state.minute * 6) + (this.state.second / 10);
+    const secondsDegrees = this.state.second * 6;
 
-    const divStyleHours = {
-      transform: `rotateZ(${hoursDegrees}deg)`,
-    };
 
-    const divStyleMinutes = {
-      transform: `rotateZ(${minutesDegrees}deg)`,
-    };
-
-    const divStyleSeconds = {
-      transform: `rotateZ(${secondsDegrees}deg)`,
-    };
+    const divStyleHours = { transform: `rotateZ(${hoursDegrees}deg)` };
+    const divStyleMinutes = { transform: `rotateZ(${minutesDegrees}deg)` };
+    const divStyleSeconds = { transform: `rotateZ(${secondsDegrees}deg)` };
 
     return (
       <div>
@@ -66,17 +57,17 @@ export default class AnalogClock extends React.Component {
 
             <div
               id="hours-indicator"
-              className={`indicator hours-indicator ${(this.state.date.getHours() === 0 ? '' : 'transition-effect')}`}
+              className={`indicator hours-indicator ${(this.state.hour === 0 ? '' : 'transition-effect')}`}
               style={divStyleHours}
             />
             <div
               id="minutes-indicator"
-              className={`indicator minutes-indicator ${(this.state.date.getMinutes() === 0 ? '' : 'transition-effect')}`}
+              className={`indicator minutes-indicator ${(this.state.minute === 0 ? '' : 'transition-effect')}`}
               style={divStyleMinutes}
             />
             <div
               id="seconds-indicator"
-              className={`indicator seconds-indicator ${(this.state.date.getSeconds() === 0 ? '' : 'transition-effect')}`}
+              className={`indicator seconds-indicator ${(this.state.second === 0 ? '' : 'transition-effect')}`}
               style={divStyleSeconds}
             />
             <div className="indicator-cover" />
@@ -86,4 +77,12 @@ export default class AnalogClock extends React.Component {
     );
   }
 }
+
+AnalogClock.propTypes = {
+  hour: PropTypes.number.isRequired,
+  minute: PropTypes.number.isRequired,
+  second: PropTypes.number.isRequired,
+};
+
+export default AnalogClock;
 
