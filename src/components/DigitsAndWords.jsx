@@ -16,6 +16,10 @@ function makeSpans(first, second = null) {
  * makeWords();
  * Big old string-voodoo function to spell out
  * time like a true nord.
+ * TODO: This will have to be rewritten
+ * in a way that doesn't mess up the string
+ * value for the sake of formatting. Perhaps by
+ * returning a string with a delimiter character?
  */
 function makeWords(hour, minute) {
   const hourStringsNB = {
@@ -67,36 +71,36 @@ function makeWords(hour, minute) {
     18: 'atten',
     19: 'nitten',
   };
-  const betterHour = (minute >= 20) ? (parseInt(hour, 10) + 1) : parseInt(hour, 10);
-  const betterMinute = parseInt(minute, 10);
+  const hourKey = (minute >= 20) ? (parseInt(hour, 10) + 1) : parseInt(hour, 10);
+  const minuteKey = parseInt(minute, 10);
   let jsx;
   switch (true) {
-    case (betterMinute === 0):
-      jsx = makeSpans(`akkurat ${hourStringsNB[betterHour]}`);
+    case (minuteKey === 0):
+      jsx = makeSpans(`akkurat ${hourStringsNB[hourKey]}`);
       break;
-    case (betterMinute > 0 && betterMinute < 15):
-      jsx = makeSpans(`${minuteStringsNB[betterMinute]} over ${hourStringsNB[betterHour]}`);
+    case (minuteKey > 0 && minuteKey < 15):
+      jsx = makeSpans(`${minuteStringsNB[minuteKey]} over ${hourStringsNB[hourKey]}`);
       break;
-    case (betterMinute === 15):
-      jsx = makeSpans(`kvart over ${hourStringsNB[betterHour]}`);
+    case (minuteKey === 15):
+      jsx = makeSpans(`kvart over ${hourStringsNB[hourKey]}`);
       break;
-    case (betterMinute > 15 && betterMinute < 20):
-      jsx = makeSpans(`${minuteStringsNB[betterMinute]} over ${hourStringsNB[betterHour]}`);
+    case (minuteKey > 15 && minuteKey < 20):
+      jsx = makeSpans(`${minuteStringsNB[minuteKey]} over ${hourStringsNB[hourKey]}`);
       break;
-    case (betterMinute >= 20 && betterMinute < 30):
-      jsx = makeSpans(`${minuteStringsNB[(30 - betterMinute)]} på`, `halv ${hourStringsNB[betterHour]}`);
+    case (minuteKey >= 20 && minuteKey < 30):
+      jsx = makeSpans(`${minuteStringsNB[(30 - minuteKey)]} på`, `halv ${hourStringsNB[hourKey]}`);
       break;
-    case (betterMinute === 30):
-      jsx = makeSpans(`halv ${hourStringsNB[betterHour]}`);
+    case (minuteKey === 30):
+      jsx = makeSpans(`halv ${hourStringsNB[hourKey]}`);
       break;
-    case (betterMinute > 30 && betterMinute < 45):
-      jsx = makeSpans(`${minuteStringsNB[(betterMinute - 30)]} over`, `halv ${hourStringsNB[betterHour]}`);
+    case (minuteKey > 30 && minuteKey < 45):
+      jsx = makeSpans(`${minuteStringsNB[(minuteKey - 30)]} over`, `halv ${hourStringsNB[hourKey]}`);
       break;
-    case (betterMinute === 45):
-      jsx = makeSpans(`kvart på ${hourStringsNB[betterHour]}`);
+    case (minuteKey === 45):
+      jsx = makeSpans(`kvart på ${hourStringsNB[hourKey]}`);
       break;
-    case (betterMinute > 45):
-      jsx = makeSpans(`${minuteStringsNB[(60 - betterMinute)]} på ${hourStringsNB[betterHour]}`);
+    case (minuteKey > 45):
+      jsx = makeSpans(`${minuteStringsNB[(60 - minuteKey)]} på ${hourStringsNB[hourKey]}`);
       break;
     default:
       jsx = makeSpans('...');
@@ -104,7 +108,10 @@ function makeWords(hour, minute) {
   }
   return jsx;
 }
-
+/**
+ * makeDigits()
+ * Prepend single-digit values with leading zero.
+ */
 function makeDigits(hour, minute) {
   const hourFormatted = hour < 10 ? `0${hour}` : hour;
   const minutesFormatted = minute < 10 ? `0${minute}` : minute;

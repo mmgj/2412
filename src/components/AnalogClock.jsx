@@ -19,6 +19,7 @@ class AnalogClock extends React.Component {
 
   componentWillReceiveProps(nextProps) {
     if (!this.setState.fireFixed) {
+      // Dreadful hack to deal with Firefox positioning bug.
       this.fireHazard.style.marginTop = '1px';
       this.setState({ fireFixed: true });
     }
@@ -30,19 +31,14 @@ class AnalogClock extends React.Component {
     });
   }
 
-  componentWillUnmount() {
-    clearInterval(this.timerID);
-  }
-
   render() {
     const hoursDegrees = (this.state.hour * 30) + (this.state.minute / 2);
     const minutesDegrees = (this.state.minute * 6) + (this.state.second / 10);
     const secondsDegrees = this.state.second * 6;
 
-
-    const divStyleHours = { transform: `rotateZ(${hoursDegrees}deg)` };
-    const divStyleMinutes = { transform: `rotateZ(${minutesDegrees}deg)` };
-    const divStyleSeconds = { transform: `rotateZ(${secondsDegrees}deg)` };
+    const hourStyle = { transform: `rotateZ(${hoursDegrees}deg)` };
+    const minuteStyle = { transform: `rotateZ(${minutesDegrees}deg)` };
+    const secondStyle = { transform: `rotateZ(${secondsDegrees}deg)` };
 
     return (
       <div>
@@ -58,17 +54,17 @@ class AnalogClock extends React.Component {
             <div
               id="hours-indicator"
               className={`indicator hours-indicator ${(this.state.hour === 0 ? '' : 'transition-effect')}`}
-              style={divStyleHours}
+              style={hourStyle}
             />
             <div
               id="minutes-indicator"
               className={`indicator minutes-indicator ${(this.state.minute === 0 ? '' : 'transition-effect')}`}
-              style={divStyleMinutes}
+              style={minuteStyle}
             />
             <div
               id="seconds-indicator"
               className={`indicator seconds-indicator ${(this.state.second === 0 ? '' : 'transition-effect')}`}
-              style={divStyleSeconds}
+              style={secondStyle}
             />
             <div className="indicator-cover" />
           </div>

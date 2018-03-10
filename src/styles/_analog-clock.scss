@@ -34,7 +34,7 @@
   opacity: 1;
   transition: opacity .4s;
   // Terrible, terrible firefox hack.
-  // See AnalogClock.jsx > componentDidMount.
+  // See AnalogClock.jsx > componentWillReceiveProps.
   @-moz-document url-prefix() {
     &.waiting {
       opacity: 0 !important;
