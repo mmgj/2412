@@ -17,7 +17,7 @@ class App extends React.Component {
 
   componentDidMount() {
     // Pause for loading fonts.
-    window.addEventListener('load', () => this.setState({ domReady: true }));
+    window.addEventListener('DOMContentLoaded', () => this.setState({ domReady: true }));
     this.updateClocks();
     setInterval(this.updateClocks, 1000);
   }
@@ -31,7 +31,6 @@ class App extends React.Component {
       minute,
       second,
     });
-    if (hour !== undefined) document.title = `${hour}:${minute}`;
   }
 
   render() {

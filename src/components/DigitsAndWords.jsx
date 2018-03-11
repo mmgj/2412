@@ -136,6 +136,7 @@ class DigitsAndWords extends React.Component {
       digits,
       words,
     });
+    if (this.state.digits !== undefined) document.title = this.state.digits;
   }
 
   render() {

@@ -5,7 +5,7 @@
 /coverage
 
 # Private
-/public/index_prod.html
+/public/index_prod.htmlt
 
 # production
 /build
