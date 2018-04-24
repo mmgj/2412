@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { Component } from 'react';
 import AnalogClock from './components/AnalogClock';
 import DigitsAndWords from './components/DigitsAndWords';
 import GitHubber from './components/GitHubber';
 
-class App extends React.Component {
+class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -38,7 +38,7 @@ class App extends React.Component {
     return (
       <div className={this.state.domReady ? 'app-outer-wrap' : 'app-outer-wrap waiting'}>
         <GitHubber />
-        {this.state.hour && this.state.minute
+        {this.state.second !== undefined
         ?
           <div className="good-times">
             <div className="clock-holder">
@@ -53,4 +53,3 @@ class App extends React.Component {
   }
 }
 export default App;
-
