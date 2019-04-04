@@ -67,7 +67,7 @@ function makeWords(hour, minute) {
     14: 'fjorten',
     15: 'kvart',
     16: 'seksten',
-    17: 'søtten',
+    17: 'sytten',
     18: 'atten',
     19: 'nitten',
   };

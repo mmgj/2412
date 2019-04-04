@@ -1,7 +1,5 @@
 /**
  * Based on https://github.com/tholman/github-corners
- * Should probably be made configurable with props and
- * saved for later.
  */
 
 import React from 'react';
@@ -13,6 +11,8 @@ const GitHubber = () =>
       <a
         href="https://github.com/mmgj/2412"
         aria-label="View source on Github"
+        target="_blank"
+        rel="noopener noreferrer"
       >
         <svg
           width="80"

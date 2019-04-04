@@ -5,11 +5,40 @@ html {
   min-height: 100%;
 }
 
+.cookie-alert.react-cookie-banner {
+  width: 90vw;
+  max-width: 700px;
+  background-color: #444;
+  color: white;
+  padding: 1em 1em .8em 1em;
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+  display: flex;
+  justify-content: space-between;
+  font-family: $wordFont;
+  font-size: .9em;
+  .cookie-message {
+    display: block;
+    padding-top: 5px;
+    flexGrow: 2;
+  }
+  button.button-close {
+    font-size: .8em;
+    margin-left: 15px;
+    padding: 5px;
+    width: 150px;
+  }
+}
+
 .app-outer-wrap {
   max-width: 600px;
   margin: 0 auto;
   opacity: 1;
   transition: opacity .4s;
+
   &.waiting {
     //FIXME: Should probably be axed. See App.jsx
     opacity: 0 !important;
@@ -18,9 +47,9 @@ html {
     text-align: center;
     width: 100%;
     margin: 0 auto;
-    margin-top: 2rem;
     display: flex;
     flex-direction: column;
+    @include centerer();
     .clock-holder {
       width: 80%;
       display: block;
@@ -30,4 +59,28 @@ html {
       transition: opacity .4s;
     }
   }
-}
+  .footer {
+    position:fixed;
+    left:0px;
+    bottom:0px;
+    height:50px;
+    width:100%;
+    // background-color: #222;
+    // border-top: 1px solid #fff;
+    // box-shadow: inset 0px 3px 5px 0px rgba(0,0,0,0.75);
+    .footer-content {
+      color: #444;
+      font-size: .8em;
+      text-align: center;
+      font-family: $wordFont;
+      display: block;
+      @include centerer();
+        a, a:visited {
+          color: #666;
+        }
+        a:hover {
+          color: #999;
+        }
+      }
+    }
+ }

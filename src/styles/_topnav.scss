@@ -1,0 +1,87 @@
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-size: .9em;
+}
+
+.modal-window {
+  width: 80vw;
+  height: auto;
+  font-size: 0.8em;
+  h1 {
+    font-size: 1.2em;
+  }
+  a, a:visited {
+    color: #444;
+    text-decoration: underline;
+  }
+  ol {
+    padding-left: 20px;
+    li {
+      margin-bottom: 10px;
+    }
+  }
+}
+.banner {
+  position: fixed;
+  left: 0; right: 0;
+  background: #222;
+  height: 40px;
+  top: -50px;
+  transition: all .3s ease;
+  z-index: 1001;
+  .modal-anchor {
+    cursor: pointer;
+  }
+  &:target {
+    top: 0;
+    transition: all .3s ease;
+    a#open-menu { display: none; }
+    a#close-menu {display: block;}
+  }
+
+  a#close-menu { display: none; }
+}
+nav {
+  color: #ccc;
+  font-family: $wordFont;
+  ul {
+    margin-top: 10px;
+    padding-left: 10px;
+    li {
+      position: relative;
+      list-style-type: none;
+      display: inline;
+      margin: 0 10px;
+      font-size: .8em;
+      a, a:visited {
+        color: #eee;
+      }
+    }
+  }
+}
+
+a { color: white; text-decoration: none; }
+
+.ribbon {
+  position: absolute;
+  top: 0; left: 1em;
+  height: 70px;
+
+  h4 {
+    position: relative;
+    padding-top: 30px;
+    text-align: center;
+    z-index: 1000;
+
+    a {
+      color: rgba(0,0,0,.7);
+      display: block;
+      width: 50px;
+      height: 50px;
+      font-size: 1.2em;
+      text-align: left;
+    }
+  }
+}
+
+

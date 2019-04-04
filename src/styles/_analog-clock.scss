@@ -61,7 +61,7 @@
 
     &.seconds-indicator {
       width: 0.5%;
-      height: 35%;
+      height: 33%;
       z-index: 2;
       background-color: #dfc48c;
       &.transition-effect {
@@ -70,7 +70,7 @@
 
     &.minutes-indicator {
       width: 1%;
-      height: 30%;
+      height: 27.5%;
       z-index: 3;
       background-color: #cd6a51;
       &.transition-effect {
@@ -79,7 +79,7 @@
 
     &.hours-indicator {
       width: 1.5%;
-      height: 22.5%;
+      height: 23%;
       z-index: 4;
       background-color: #8f9c6c;
       &.transition-effect {

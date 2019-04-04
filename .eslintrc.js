@@ -3,7 +3,9 @@ module.exports = {
     "env": {
         "browser": true,
     },
+    "parser": "babel-eslint",
     "rules": {
+        "react/no-unescaped-entities": "off",
         "react/prefer-stateless-function": "off",
         "react/forbid-prop-types": "off",
         "jsx-a11y/href-no-hash": "off",

@@ -1,5 +1,5 @@
 /* Based on this pen by Codepen user Costas Yiannatsos
-*  https://codepen.io/cyiannatsos/pen/EXVRab
+ *  https://codepen.io/cyiannatsos/pen/EXVRab
 */
 
 import React from 'react';
@@ -18,7 +18,7 @@ class AnalogClock extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if (!this.setState.fireFixed) {
+    if (!this.state.fireFixed) {
       // Dreadful hack to deal with Firefox positioning bug.
       this.fireHazard.style.marginTop = '1px';
       this.setState({ fireFixed: true });
